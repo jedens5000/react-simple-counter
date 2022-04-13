@@ -1,26 +1,34 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import "../styles/index.css";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+function Home() {
+	// time is the variable, setTime is the function, 00 is the starting point
+	const [time, setTime] = React.useState(00);
+	const [timerOn, setTimeOn] = React.useState(false);
 
-//create your first component
-const Home = () => {
+	React.useEffect(() => {
+		let interval = null;
+
+		if (timerOn) {
+			interval = setInterval(() => {
+				setTime((prevTime) => prevTime + 1);
+			}, 1000);
+		} else {
+			clearInterval(interval);
+		}
+
 	return (
-		<div>
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="Home">
+			{/* <span>{("00" + Math.floor((time / 60000) % 60)).slice(-2)}</span>
+			<span>:{("00" + Math.floor((time / 1000) % 60)).slice(-2)}</span> */}
+			<div>{time}</div>
+			<div>
+				<button onClick={() => setTimeOn(true)}>Start</button>
+				<button onClick={() => setTimeOn(false)}>Stop</button>
+				<button onClick={() => setTime(0)}>Reset</button>
+			</div>
 		</div>
 	);
-};
+}
 
 export default Home;

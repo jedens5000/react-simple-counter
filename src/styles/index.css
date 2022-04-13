@@ -10,3 +10,15 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+body {
+    text-align: center;    
+    background-color: aqua;
+}
+button {
+    border-radius: 1%;
+}
+
+.home {
+    padding: 50px;
+}
